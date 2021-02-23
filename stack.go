@@ -3,32 +3,31 @@
 package stack
 
 type Stack struct {
-	Length int
 	Stack  []interface{}
 }
 
 func (s *Stack) Push(value interface{}) {
 	s.Stack = append(s.Stack, value)
-	s.Length += 1
 }
 
 func (s *Stack) Pop() interface{} {
-	poppedValue := s.Stack[s.Length-1]
-	s.Stack = s.Stack[:s.Length-1]
+	length := len(s.Stack)
+	poppedValue := s.Stack[length-1]
+	s.Stack = s.Stack[:length-1]
 
-	s.Length -= 1
 	return poppedValue
 }
 
 func (s Stack) Peek() interface{} {
-	return s.Stack[s.Length-1]
+	length := len(s.Stack)
+	return s.Stack[length-1]
 
 }
 
 func (s Stack) IsEmpty() bool {
-	return s.Length <= 0
+	return s.Size() <= 0
 }
 
 func (s Stack) Size() int {
-	return s.Length
+	return len(s.Stack)
 }
